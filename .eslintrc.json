@@ -1,8 +1,0 @@
-{
-  "eslintConfig": {
-    "extends": ["react-app", "shared-config", "eslint-config-prettier"],
-    "rules": {
-      "additional-rule": "warn"
-    }
-  }
-}

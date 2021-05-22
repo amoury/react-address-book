@@ -1,0 +1,48 @@
+.nav {
+  width: 100%;
+  display: flex;
+  padding: 10px 5px;
+  background: #fff;
+  position: sticky;
+  top: 0;
+}
+
+.mainLogo {
+  max-width: 200px;
+  display: none;
+}
+
+.mainLogo h1 {
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.searchBox {
+  flex: 1;
+  margin: 0 10px;
+  display: flex;
+}
+
+.searchInput {
+  width: 100%;
+  flex: 1;
+}
+
+@media (min-width: 768px) {
+  .nav {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+  }
+
+  .mainLogo {
+    display: unset;
+  }
+
+  .searchBox {
+    max-width: 600px;
+  }
+}
