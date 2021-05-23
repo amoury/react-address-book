@@ -1,0 +1,84 @@
+.markerPin {
+  width: 35px;
+  height: 35px;
+  border-radius: 50% 50% 50% 0;
+  background: #c30b82;
+  position: relative;
+  transform: rotate(-45deg);
+  left: 50%;
+  top: 50%;
+  margin: -15px 0 0 -15px;
+  background-position: center;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.markerPinInner {
+  content: '';
+  width: 30px;
+  height: 30px;
+  margin: 3px 0 0 3px;
+  background: #fff;
+  position: absolute;
+  border-radius: 50%;
+  overflow: hidden;
+  transform: rotate(45deg);
+}
+
+.markerPinInner img {
+  max-width: 100%;
+}
+
+.userMapWrapper {
+  position: relative;
+}
+
+.userMap {
+  width: 90vw;
+  height: 90vh;
+  border-radius: 10px;
+}
+
+.userCards {
+  position: absolute;
+  height: 100%;
+  width: 300px;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.5);
+  overflow-y: auto;
+  display: none;
+}
+
+.userCards ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.userCards ul li {
+  margin: 10px;
+}
+
+.pagination {
+  position: sticky;
+  bottom: 0;
+  height: 50px;
+  left: 0;
+  z-index: 7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 1) 100%);
+  display: none;
+}
+
+@media (min-width: 700px) {
+  .userCards {
+    display: unset;
+  }
+
+  .pagination {
+    display: flex;
+  }
+}

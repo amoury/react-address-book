@@ -1,27 +1,22 @@
-import { useState } from 'react';
 import { Input, Button, Icon } from 'semantic-ui-react';
 import { useViewport } from 'hooks/useViewport';
-// import { useUsersContext } from "../../contexts/UsersContext";
+import { useUserContext } from 'contexts/UserContext';
 
 import styles from './Header.module.css';
 
-const Header = () => {
-  // const { searchTerm, setSearchTerm } = useUsersContext();
-  const [searchTerm, setSearchTerm] = useState('');
+const Header = ({ viewType, setViewType }) => {
+  const { searchTerm, setSearchTerm } = useUserContext();
   const { width } = useViewport();
-
-  const viewType = 'map';
 
   const handleChange = (e, { value }) => {
     setSearchTerm(value);
   };
 
   const handleViewChange = () => {
-    console.log('view change');
-    // if (viewType === "list") {
-    //   return setViewType("map");
-    // }
-    // return setViewType("list");
+    if (viewType === 'list') {
+      return setViewType('map');
+    }
+    return setViewType('list');
   };
 
   const renderViewToggleButton = () => {
@@ -55,7 +50,7 @@ const Header = () => {
           icon="search"
           value={searchTerm}
           onChange={handleChange}
-          placeholder="Search..."
+          placeholder="Search by name or email..."
         />
         {!!searchTerm && (
           <Button circular icon onClick={() => setSearchTerm('')}>

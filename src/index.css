@@ -22,3 +22,13 @@ img {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+#root .mapboxgl-ctrl-bottom-left {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  #root .ui.table:not(.unstackable) thead {
+    display: none;
+  }
+}

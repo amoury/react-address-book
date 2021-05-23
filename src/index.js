@@ -1,14 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import './index.css';
 import 'semantic-ui-css/semantic.min.css';
 import App from './components/app/App';
 import reportWebVitals from './reportWebVitals';
+import UserProvider from 'contexts/UserContext';
+
+const queryConfig = {
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      staleTime: 60 * 1000,
+    },
+  },
+};
+
+const queryClient = new QueryClient(queryConfig);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <QueryClientProvider client={queryClient}>
+    <React.StrictMode>
+      <UserProvider>
+        <App />
+      </UserProvider>
+    </React.StrictMode>
+  </QueryClientProvider>,
   document.getElementById('root')
 );
 

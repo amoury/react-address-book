@@ -1,0 +1,18 @@
+.tableWrapper {
+  height: 90vh;
+  background-color: #fff;
+  overflow-y: auto;
+  border-radius: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.tableFooter {
+  position: sticky;
+  bottom: 0;
+  height: 70px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 1) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
