@@ -4,7 +4,7 @@ import { useUserContext } from 'contexts/UserContext';
 
 import styles from './Header.module.css';
 
-const Header = ({ viewType, setViewType }) => {
+export const Header = ({ viewType, setViewType }) => {
   const { searchTerm, setSearchTerm } = useUserContext();
   const { width } = useViewport();
 
@@ -31,7 +31,7 @@ const Header = ({ viewType, setViewType }) => {
     }
 
     return (
-      <Button {...buttonProps}>
+      <Button data-testid="toggle-view-btn" role="button" {...buttonProps}>
         <Icon name={viewType === 'map' ? `th list` : 'world'} />
         {width > 600 && buttonText}
       </Button>
@@ -53,7 +53,7 @@ const Header = ({ viewType, setViewType }) => {
           placeholder="Search by name or email..."
         />
         {!!searchTerm && (
-          <Button circular icon onClick={() => setSearchTerm('')}>
+          <Button role="button" circular icon onClick={() => setSearchTerm('')}>
             <Icon name="close" />
           </Button>
         )}

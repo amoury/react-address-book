@@ -31,7 +31,7 @@ const UserMap = () => {
   };
 
   return (
-    <div className={styles.userMapWrapper}>
+    <div data-testid="user-map" className={styles.userMapWrapper}>
       <div className={styles.userCards}>
         <ul>
           {users.map((user) => (

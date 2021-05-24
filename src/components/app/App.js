@@ -25,12 +25,12 @@ function App() {
             <Route path="/user/:emailId">
               <UserDetails />
             </Route>
-            <section className={styles.content}>
-              <Route path="/" exact>
+            <Route path="/" exact>
+              <section data-testid="content" className={styles.content}>
                 {viewType === 'map' && <UserMap />}
                 {viewType === 'list' && <UserTable />}
-              </Route>
-            </section>
+              </section>
+            </Route>
           </Switch>
         )}
       </main>

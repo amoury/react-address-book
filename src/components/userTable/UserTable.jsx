@@ -7,7 +7,7 @@ import styles from './UserTable.module.css';
 const UserTable = () => {
   const { users } = useUserContext();
   return (
-    <div className={styles.tableWrapper}>
+    <div data-testid="user-table" className={styles.tableWrapper}>
       <Table sortable celled fixed selectable>
         <Table.Header>
           <Table.Row>

@@ -2,25 +2,24 @@ import { createContext, useContext, useState, useEffect, useCallback } from 'rea
 import { useUserQuery } from '../hooks/useUserQuery';
 import { LIMIT } from 'components/pagination/Pagination';
 
-// const defaultValue = {
-//   users: [],
-//   isLoading: false,
-//   isError: false,
-//   activePage: 1,
-//   searchTerm: "",
-//   setSearchTerm: () => undefined,
-//   setActivePage: () => undefined,
-// };
+const defaultValue = {
+  users: [],
+  totalResults: 10,
+  isLoading: false,
+  isError: false,
+  activePage: 1,
+  searchTerm: '',
+  setSearchTerm: () => undefined,
+  setActivePage: () => undefined,
+};
 
-export const UserContext = createContext();
+export const UserContext = createContext(defaultValue);
 
 export const UserProvider = (props) => {
   const [activePage, setActivePage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
-  const { data, isLoading, isError } = useUserQuery();
+  const { data, isLoading, isError, isSuccess } = useUserQuery();
   const [filteredResults, setFilteredResults] = useState([]);
-
-  let visibleUsers;
 
   const getSearchResults = useCallback(() => {
     setActivePage(1);
@@ -44,6 +43,8 @@ export const UserProvider = (props) => {
     setFilteredResults(searchResults);
   }, [getSearchResults, data]);
 
+  let visibleUsers;
+
   if (LIMIT) {
     if (activePage === 1) {
       visibleUsers = filteredResults.slice(0, LIMIT);
@@ -51,8 +52,6 @@ export const UserProvider = (props) => {
       visibleUsers = filteredResults.slice(LIMIT * (activePage - 1), LIMIT * activePage);
     }
   }
-
-  // console.log('visible User ', visibleUsers);
 
   const value = {
     users: visibleUsers,
@@ -63,6 +62,7 @@ export const UserProvider = (props) => {
     setActivePage,
     searchTerm,
     setSearchTerm,
+    isSuccess,
   };
 
   return <UserContext.Provider value={value} {...props} />;
