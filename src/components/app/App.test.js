@@ -31,5 +31,8 @@ describe('App', () => {
     user.click(toggleBtn);
     expect(toggleBtn).toHaveTextContent(/list/i);
     expect(screen.getByTestId('user-map')).toBeInTheDocument();
+    user.click(toggleBtn);
+    expect(toggleBtn).toHaveTextContent(/map/i);
+    expect(screen.getByTestId('user-table')).toBeInTheDocument();
   });
 });

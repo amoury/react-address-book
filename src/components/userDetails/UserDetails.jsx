@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { Image, Card, Icon } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import styles from './UserDetails.module.css';
 
 const UserDetails = () => {
@@ -8,7 +9,14 @@ const UserDetails = () => {
 
   return (
     <div className={styles.userDetails}>
-      <span>Back</span>
+      <div className={styles.topBar}>
+        <Link to="/">
+          <div className={styles.backBtn}>
+            <Icon name="angle left" />
+            <span>Back</span>
+          </div>
+        </Link>
+      </div>
       <Card>
         <Image src={user.picture.large} wrapped ui={false} />
         <Card.Content>
@@ -16,9 +24,9 @@ const UserDetails = () => {
           <Card.Meta>{user.email}</Card.Meta>
           <Card.Description>{`${user.location.city}, ${user.location.country}`}</Card.Description>
         </Card.Content>
-        <Card.Content extra>
+        <Card.Content className={styles.cardExtra} extra>
           <Icon name="mobile" />
-          {user.phone}
+          <span>{user.phone}</span>
         </Card.Content>
       </Card>
     </div>

@@ -53,7 +53,13 @@ export const Header = ({ viewType, setViewType }) => {
           placeholder="Search by name or email..."
         />
         {!!searchTerm && (
-          <Button role="button" circular icon onClick={() => setSearchTerm('')}>
+          <Button
+            role="button"
+            data-testid="clear-btn"
+            circular
+            icon
+            onClick={() => setSearchTerm('')}
+          >
             <Icon name="close" />
           </Button>
         )}

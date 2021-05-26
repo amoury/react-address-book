@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import ReactMap, { Marker, Popup } from 'react-map-gl';
+import { Icon } from 'semantic-ui-react';
 import { useViewport } from 'hooks/useViewport';
 import { useUserContext } from 'contexts/UserContext';
 import UserCard from 'components/userCard/UserCard';
@@ -77,9 +78,14 @@ const UserMap = () => {
           <Popup
             latitude={Number(selectedUser.location.coordinates.latitude)}
             longitude={Number(selectedUser.location.coordinates.longitude)}
-            onClose={() => setSelectedUser(null)}
+            closeButton={false}
+            closeOnClick={false}
+            captureClick={true}
           >
-            <div>
+            <div className={styles.closeBtn} role="button" onClick={() => setSelectedUser(null)}>
+              <Icon name="close" />
+            </div>
+            <div className={styles.popupContent} onClick={() => setSelectedUser(null)}>
               <UserCard user={selectedUser} />
             </div>
           </Popup>

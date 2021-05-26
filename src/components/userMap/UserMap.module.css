@@ -73,6 +73,34 @@
   display: none;
 }
 
+.popupContent {
+  position: relative;
+}
+
+.closeBtn {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  z-index: 10;
+  background-color: teal;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.closeBtn i {
+  margin: 0;
+  padding: 0;
+  font-size: 8px;
+  height: unset;
+  width: unset;
+}
+
 @media (min-width: 700px) {
   .userCards {
     display: unset;

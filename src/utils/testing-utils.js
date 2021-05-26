@@ -5,15 +5,6 @@ import { renderHook } from '@testing-library/react-hooks';
 
 const queryClient = new QueryClient();
 
-// export const customRender = (ui, { providerProps, ...renderOptions }) => {
-//   return render(
-//     <QueryClientProvider client={queryClient}>
-//       <UserContext.Provider {...providerProps}>{ui}</UserContext.Provider>
-//     </QueryClientProvider>,
-//     renderOptions
-//   );
-// };
-
 const AllProviders = ({ children }) => {
   return (
     <QueryClientProvider client={queryClient}>
