@@ -5,22 +5,40 @@ import Pagination from 'components/pagination/Pagination';
 import styles from './UserTable.module.css';
 
 const UserTable = () => {
-  const { users } = useUserContext();
+  const { users, sortConfig, handleSort } = useUserContext();
+  const { column, direction } = sortConfig;
+
+  if (!users.length) {
+    return <p>No records found for your search term</p>;
+  }
+
   return (
     <div data-testid="user-table" className={styles.tableWrapper}>
       <Table sortable celled fixed selectable>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell sorted={null} onClick={() => console.log('name')}>
+            <Table.HeaderCell
+              sorted={column === 'name.first' ? direction : null}
+              onClick={() => handleSort('name.first')}
+            >
               Name
             </Table.HeaderCell>
-            <Table.HeaderCell sorted={null} onClick={() => console.log('age')}>
+            <Table.HeaderCell
+              sorted={column === 'gender' ? direction : null}
+              onClick={() => handleSort('gender')}
+            >
               Gender
             </Table.HeaderCell>
-            <Table.HeaderCell sorted={null} onClick={() => console.log('gender')}>
+            <Table.HeaderCell
+              sorted={column === 'phone' ? direction : null}
+              onClick={() => handleSort('phone')}
+            >
               Phone
             </Table.HeaderCell>
-            <Table.HeaderCell sorted={null} onClick={() => console.log('email')}>
+            <Table.HeaderCell
+              sorted={column === 'email' ? direction : null}
+              onClick={() => handleSort('email')}
+            >
               Email
             </Table.HeaderCell>
             <Table.HeaderCell>View</Table.HeaderCell>

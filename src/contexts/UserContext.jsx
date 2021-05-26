@@ -1,6 +1,6 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { createContext, useContext, useState, useEffect, useReducer } from 'react';
 import { useUserQuery } from '../hooks/useUserQuery';
-import { LIMIT } from 'components/pagination/Pagination';
+import { getPaginatedData, performSearch, sortBy } from 'utils/helpers';
 
 const defaultValue = {
   users: [],
@@ -20,38 +20,31 @@ export const UserProvider = (props) => {
   const [searchTerm, setSearchTerm] = useState('');
   const { data, isLoading, isError, isSuccess } = useUserQuery();
   const [filteredResults, setFilteredResults] = useState([]);
-
-  const getSearchResults = useCallback(() => {
-    setActivePage(1);
-    if (!searchTerm) return data.results;
-    const searchResults = data.results.filter((user) => {
-      const { first, last } = user.name;
-      const query = searchTerm.toLowerCase();
-      return (
-        first.toLowerCase().includes(query) ||
-        last.toLowerCase().includes(query) ||
-        user.email.toLowerCase().includes(query)
-      );
-    });
-
-    return searchResults;
-  }, [searchTerm, data]);
+  const [sortConfig, setSortConfig] = useState({ column: null, direction: null });
 
   useEffect(() => {
     if (!data) return;
-    const searchResults = getSearchResults();
+    setActivePage(1);
+    const searchResults = performSearch(data.results, searchTerm);
     setFilteredResults(searchResults);
-  }, [getSearchResults, data]);
+  }, [data, searchTerm]);
 
-  let visibleUsers;
-
-  if (LIMIT) {
-    if (activePage === 1) {
-      visibleUsers = filteredResults.slice(0, LIMIT);
-    } else {
-      visibleUsers = filteredResults.slice(LIMIT * (activePage - 1), LIMIT * activePage);
+  const handleSort = (column) => {
+    if (column === sortConfig.column) {
+      const direction = sortConfig.direction === 'ascending' ? 'descending' : 'ascending';
+      setSortConfig({ ...sortConfig, direction });
+      return;
     }
+    setSortConfig({ column, direction: 'ascending' });
+  };
+
+  let visibleUsers = filteredResults;
+
+  if (sortConfig.column) {
+    visibleUsers = sortBy(filteredResults, sortConfig.column, sortConfig.direction);
   }
+
+  visibleUsers = getPaginatedData(visibleUsers, activePage);
 
   const value = {
     users: visibleUsers,
@@ -63,6 +56,8 @@ export const UserProvider = (props) => {
     searchTerm,
     setSearchTerm,
     isSuccess,
+    handleSort,
+    sortConfig,
   };
 
   return <UserContext.Provider value={value} {...props} />;
