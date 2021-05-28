@@ -1,19 +1,8 @@
-import { createContext, useContext, useState, useEffect, useReducer } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { useUserQuery } from '../hooks/useUserQuery';
 import { getPaginatedData, performSearch, sortBy } from 'utils/helpers';
 
-const defaultValue = {
-  users: [],
-  totalResults: 10,
-  isLoading: false,
-  isError: false,
-  activePage: 1,
-  searchTerm: '',
-  setSearchTerm: () => undefined,
-  setActivePage: () => undefined,
-};
-
-export const UserContext = createContext(defaultValue);
+export const UserContext = createContext();
 
 export const UserProvider = (props) => {
   const [activePage, setActivePage] = useState(1);

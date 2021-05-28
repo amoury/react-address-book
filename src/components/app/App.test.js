@@ -1,12 +1,19 @@
 import { screen, waitFor } from '@testing-library/react';
 import server from 'mocks/server';
+import { BrowserRouter as Router } from 'react-router-dom';
 import user from '@testing-library/user-event';
 import { customRender } from 'utils/testing-utils';
 import mockData from 'mocks/data';
 import App from './App';
 
 beforeAll(() => server.listen());
-beforeEach(() => customRender(<App />));
+beforeEach(() =>
+  customRender(
+    <Router>
+      <App />
+    </Router>
+  )
+);
 afterAll(() => server.close());
 afterEach(() => server.resetHandlers());
 
@@ -34,5 +41,13 @@ describe('App', () => {
     user.click(toggleBtn);
     expect(toggleBtn).toHaveTextContent(/map/i);
     expect(screen.getByTestId('user-table')).toBeInTheDocument();
+  });
+
+  test(`redirects to the userDetail page and renders the right user's details`, async () => {
+    expect(screen.getByTestId('user-table')).toBeInTheDocument();
+    const firstEntryViewBtn = screen.getByTestId(mockData.results[0].email);
+    user.click(firstEntryViewBtn);
+    screen.getByText(/user detail page/i);
+    screen.getByText(mockData.results[0].email);
   });
 });

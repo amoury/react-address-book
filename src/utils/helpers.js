@@ -14,12 +14,12 @@ export const performSearch = (users, searchTerm) => {
   });
 };
 
-export const sortBy = (data, column, direction = 'ascending') => {
+export const sortBy = (data, column = null, direction = 'ascending') => {
   if (!column) return data;
   return data.sort((user1, user2) => {
     const user1Val = _get(user1, column);
     const user2Val = _get(user2, column);
-    if (!user1Val || !user2Val) return;
+    if (!user1Val || !user2Val) return 1;
 
     if (direction === 'ascending') {
       return user1Val.localeCompare(user2Val);

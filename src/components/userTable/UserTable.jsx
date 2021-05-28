@@ -56,7 +56,10 @@ const UserTable = () => {
                 <Table.Cell>{user.phone}</Table.Cell>
                 <Table.Cell>{user.email}</Table.Cell>
                 <Table.Cell>
-                  <Link to={{ pathname: `/user/${user.email}`, state: user }}>
+                  <Link
+                    data-testid={user.email}
+                    to={{ pathname: `/user/${user.email}`, state: user }}
+                  >
                     <Button size="tiny" color="teal" icon labelPosition="right">
                       View
                       <Icon name="right arrow" />

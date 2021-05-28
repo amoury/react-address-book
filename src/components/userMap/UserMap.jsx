@@ -31,6 +31,14 @@ const UserMap = () => {
     setSelectedUser(user);
   };
 
+  if (!process.env.REACT_APP_MAPBOX_TOKEN) {
+    return <p>Map token is missing. Please check the documentation</p>;
+  }
+
+  if (!users.length) {
+    return <p>No records found for your search term</p>;
+  }
+
   return (
     <div data-testid="user-map" className={styles.userMapWrapper}>
       <div className={styles.userCards}>

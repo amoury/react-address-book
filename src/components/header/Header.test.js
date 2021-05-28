@@ -1,6 +1,7 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { customRender } from 'utils/testing-utils';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Header from './Header';
 
 const mockedSetViewType = jest.fn();
@@ -9,7 +10,12 @@ beforeEach(() => {
   const providerProps = {
     value: { setSearchTerm: jest.fn((value) => {}) },
   };
-  customRender(<Header setViewType={mockedSetViewType} />, { providerProps });
+  customRender(
+    <Router>
+      <Header setViewType={mockedSetViewType} />
+    </Router>,
+    { providerProps }
+  );
 });
 
 describe('SearchInput', () => {
