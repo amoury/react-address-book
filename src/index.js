@@ -6,6 +6,7 @@ import 'semantic-ui-css/semantic.min.css';
 import App from './components/app/App';
 import reportWebVitals from './reportWebVitals';
 import UserProvider from 'contexts/UserContext';
+import CustomErrorBoundary from 'components/errorBoundary/ErrorBoundary';
 
 const queryConfig = {
   defaultOptions: {
@@ -21,9 +22,11 @@ const queryClient = new QueryClient(queryConfig);
 ReactDOM.render(
   <QueryClientProvider client={queryClient}>
     <React.StrictMode>
-      <UserProvider>
-        <App />
-      </UserProvider>
+      <CustomErrorBoundary>
+        <UserProvider>
+          <App />
+        </UserProvider>
+      </CustomErrorBoundary>
     </React.StrictMode>
   </QueryClientProvider>,
   document.getElementById('root')

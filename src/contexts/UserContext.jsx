@@ -7,9 +7,13 @@ export const UserContext = createContext();
 export const UserProvider = (props) => {
   const [activePage, setActivePage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
-  const { data, isLoading, isError, isSuccess } = useUserQuery();
+  const { data, isLoading, error, isSuccess } = useUserQuery();
   const [filteredResults, setFilteredResults] = useState([]);
   const [sortConfig, setSortConfig] = useState({ column: null, direction: null });
+
+  if (error) {
+    throw new Error(error.message);
+  }
 
   useEffect(() => {
     if (!data) return;
@@ -40,7 +44,7 @@ export const UserProvider = (props) => {
     totalResults: filteredResults.length,
     activePage,
     isLoading,
-    isError,
+    error,
     setActivePage,
     searchTerm,
     setSearchTerm,

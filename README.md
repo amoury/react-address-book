@@ -41,4 +41,4 @@ I have created `UserContext` that acts as a central place to communicate data be
 
 Given more time, I would have liked to add `Filter` and change `Limit` functionality. Although it is not very time consuming, I wouldn't have enough time to add tests for these. Also I definitely see opportunities to improve the UI, which given more time, I would spend imrpoving that.
 
-Given more time I would have added more tests and `ErrorBoundary` to make the project more robust.
+Given more time I would have added more tests to make the project more robust. Although for now I have added `ErrorBoundary` which will help recover app gracefully.

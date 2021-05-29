@@ -32,7 +32,7 @@ const UserMap = () => {
   };
 
   if (!process.env.REACT_APP_MAPBOX_TOKEN) {
-    return <p>Map token is missing. Please check the documentation</p>;
+    throw new Error('Map token is missing. Please check the documentation');
   }
 
   if (!users.length) {
