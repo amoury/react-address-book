@@ -18,9 +18,11 @@ To start the app, run `npm run start` and you should be able to access the app o
 
 > Requirements - You would need Docker Desktop installed with Kubernetes engine enabled, to run the app in the cluster.
 
-To deploy and run the production app from a local kubernetes cluster - `cd` into the app directory and run `kubectl apply -f deployment.yaml`.
+To deploy and run the production app from a local kubernetes cluster - 
 
-Then visit `localhost:31000` to view the app.
+1. `cd` into the app directory
+2. Run the command `kubectl apply -f deployment.yaml` 
+3. Then visit `localhost:31000` to view the app.
 
 To stop the deployment and service, type `kubectl delete -f deployment.yaml`. This will bring down all the running pods and service created for this app.
 
