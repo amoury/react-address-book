@@ -1,6 +1,10 @@
-## The Address Book
+# The Address Book
 
 The app is deployed on and can be viewed at `https://nu-address-book.netlify.app/`
+
+## Demo
+
+https://user-images.githubusercontent.com/16633104/120106808-94635300-c16f-11eb-875e-11fdf1a3014c.mp4
 
 ## Run the App locally (Development Server)
 
